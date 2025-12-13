@@ -1,8 +1,8 @@
 #include <glad/glad.h>
 #include <vector>
-#include "Window.h"
-#include "Shader.h"
-#include "Renderer.h"
+#include "Window.hpp"
+#include "Shader.hpp"
+#include "Renderer.hpp"
 #include "Polygon.hpp"
 
 int main() {
