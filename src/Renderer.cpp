@@ -1,5 +1,5 @@
 #include <glad/glad.h>
-#include "Renderer.h"
+#include "Renderer.hpp"
 
 Renderer::Renderer(int viewPX, int viewPY, int viewPWidth, int viewPHeight) {
   glViewport(viewPX, viewPY, viewPWidth, viewPHeight);

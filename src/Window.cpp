@@ -1,5 +1,5 @@
 #include <glad/glad.h>
-#include "Window.h"
+#include "Window.hpp"
 #include <stdexcept>
 
 void resize_callback(GLFWwindow *window, int width, int height);
