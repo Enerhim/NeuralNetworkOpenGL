@@ -37,7 +37,6 @@ std::vector<float> Circle::calculateVertices(float x1, float y1, float radius,
     vertices.push_back(y1);
     vertices.push_back(0);
   }
-  m_vertices = vertices;
   return vertices;
 }
 
@@ -47,6 +46,10 @@ std::vector<unsigned int> Circle::calculateIndices(unsigned int noSides) {
   for (int i = 0; i < noSides; i++) {
     indices.push_back(0);
     indices.push_back(i + 1);
+
+    if (i == noSides - 1) {
+      indices.push_back(1);
+    } else
     indices.push_back(i + 2);
   }
 

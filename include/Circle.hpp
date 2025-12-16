@@ -8,7 +8,6 @@ public:
 
 private:
   std::vector<float> C;
-  std::vector<float> m_vertices;
   unsigned int m_noSides;
   float radius;
 
