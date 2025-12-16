@@ -12,7 +12,7 @@ int main() {
   Renderer renderer(0, 0, 1600, 900);
 
   Line line(-0.5f, 0.3f, 0.5f, 0.0f, 0.01f);
-  Circle circle(0.0f, 0.0f, 0.2f);
+  Circle circle(0.0f, 0.0f, 0.2f, 10);
 
   while (!window.shouldClose()) {
     window.processInput();
@@ -21,7 +21,7 @@ int main() {
 
     // The correspoding VBO and EBO are automatically bound when VAO is bound.
     renderer.drawElements(line.getVAO(), 6);
-    // renderer.drawElements(circle.getVAO(), circle.getVertices().size());
+    renderer.drawElements(circle.getVAO(), circle.getVertices().size());
     window.swapBuffers();
     window.pollEvents();
   }

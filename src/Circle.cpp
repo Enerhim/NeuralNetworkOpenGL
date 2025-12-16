@@ -3,16 +3,19 @@
 #include <cmath>
 #include <iostream>
 
-Circle::Circle(float x1, float y1, float radius)
-    : Polygon(calculateVertices(x1, y1, radius), calculateIndices(),
-              GL_STATIC_DRAW) {
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
-  std::cout << "Successfully constructed" << std::endl;
+Circle::Circle(float x1, float y1, float radius, unsigned int noSides)
+    : Polygon(calculateVertices(x1, y1, radius, noSides),
+              calculateIndices(noSides), GL_STATIC_DRAW) {
+  m_noSides = noSides;
 }
 
-std::vector<float> Circle::calculateVertices(float x1, float y1, float radius) {
-  unsigned int noSides = 10;
-  double angle = 360.0 / noSides;
+std::vector<float> Circle::calculateVertices(float x1, float y1, float radius,
+                                             unsigned int noSides) {
+  double angle = (360.0 / noSides) * (M_PI / 180.0);
 
   std::vector<float> vertices;
 
@@ -30,7 +33,6 @@ std::vector<float> Circle::calculateVertices(float x1, float y1, float radius) {
 
     x1 = x_;
     y1 = y_;
-    std::cout << x1 << std::endl;
     vertices.push_back(x1);
     vertices.push_back(y1);
     vertices.push_back(0);
@@ -39,8 +41,7 @@ std::vector<float> Circle::calculateVertices(float x1, float y1, float radius) {
   return vertices;
 }
 
-std::vector<unsigned int> Circle::calculateIndices() {
-  unsigned int noSides = (m_vertices.size() / 3) - 1;
+std::vector<unsigned int> Circle::calculateIndices(unsigned int noSides) {
   std::vector<unsigned int> indices;
 
   for (int i = 0; i < noSides; i++) {
