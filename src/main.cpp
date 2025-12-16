@@ -19,6 +19,12 @@ int main() {
     renderer.clear(0.1f, 0.5f, 0.1f, 1.0f);
     shader.use();
 
+    int width, height;
+    window.getSizeByRef(width, height);
+
+    float aspect = (height > 0) ? (float)width / height : 1.0f;
+    shader.setFloat("u_aspect", aspect);
+
     // The correspoding VBO and EBO are automatically bound when VAO is bound.
     renderer.drawElements(line.getVAO(), 6);
     renderer.drawElements(circle.getVAO(), circle.getIndices().size());

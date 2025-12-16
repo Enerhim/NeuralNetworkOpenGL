@@ -13,6 +13,9 @@ public:
   void processInput();
 
   GLFWwindow *native() const { return m_window; }
+  void getSizeByRef(int &width, int &height) const {
+    glfwGetWindowSize(m_window, &width, &height);
+  }
 
 private:
   GLFWwindow *m_window = nullptr;

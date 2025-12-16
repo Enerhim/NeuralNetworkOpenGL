@@ -7,6 +7,7 @@ public:
   ~Shader();
 
   void use() const;
+  void setFloat(const char *name, float value) const;
   unsigned int id() const { return shaderProgram; }
 
 private:

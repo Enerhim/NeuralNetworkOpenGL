@@ -62,3 +62,7 @@ Shader::~Shader() {
 }
 
 void Shader::use() const { glUseProgram(shaderProgram); }
+
+void Shader::setFloat(const char *name, float value) const {
+  glUniform1f(glGetUniformLocation(shaderProgram, name), value);
+}
