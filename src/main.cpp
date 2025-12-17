@@ -16,7 +16,7 @@ int main() {
   Renderer renderer(0, 0, 1600, 900);
 
   Line line(-0.5f, 0.3f, 0.5f, 0.0f, 0.01f);
-  Circle circle(0.7f, 0.0f, 0.6f, 200);
+  Circle circle(0.6f, 0.0f, 0.2f, (size_t)100);
 
   NeuralNetwork network(5, {16, 16, 10}, {reluV, reluV, softmaxV});
   std::vector<double> a = network.inference({1, 1, 1, 1, 0.5});
