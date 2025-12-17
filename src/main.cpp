@@ -5,6 +5,9 @@
 #include "Line.hpp"
 #include "Circle.hpp"
 #include "NeuralNetwork.hpp"
+#include "Math.hpp"
+
+#include <iostream>
 
 int main() {
 
@@ -15,8 +18,12 @@ int main() {
   Line line(-0.5f, 0.3f, 0.5f, 0.0f, 0.01f);
   Circle circle(0.7f, 0.0f, 0.6f, 200);
 
-  NeuralNetwork network(16, {16, 16, 10}, {"relu", "relu", "softmax"});
-  network.inference({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16});
+  NeuralNetwork network(16, {16, 16, 10}, {reluV, reluV, softmaxV});
+  std::vector<double> a = network.inference(
+      {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16});
+
+  for (size_t i = 0; i < 10; i++)
+    std::cout << a[i] << std::endl;
 
   while (!window.shouldClose()) {
     window.processInput();
