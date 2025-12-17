@@ -1,5 +1,4 @@
 #include "Math.hpp"
-#include <algorithm>
 #include <random>
 #include <stdexcept>
 #include <cmath>
@@ -9,7 +8,9 @@
 std::vector<std::vector<double>> randomMatrix(size_t rows, size_t cols) {
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::uniform_real_distribution<double> dist(0, 1);
+  // look up xavier/glorot random initialization
+  std::uniform_real_distribution<double> dist(-1.0 / sqrt(cols),
+                                              1.0 / sqrt(cols));
   std::vector<std::vector<double>> mat(rows, std::vector<double>(cols));
 
   for (size_t i = 0; i < rows; i++) {
@@ -24,14 +25,14 @@ std::vector<std::vector<double>> randomMatrix(size_t rows, size_t cols) {
 std::vector<double> randomVector(size_t size) {
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::uniform_real_distribution<double> dist(0, 1);
+  std::uniform_real_distribution<double> dist(-0.001, 0.001);
 
   std::vector<double> vec(size);
   for (size_t i = 0; i < size; i++) {
     vec[i] = dist(gen);
   }
 
-  return vec;
+  return std::vector<double>(size, 0.0);
 }
 
 // Matrix Vector Op
@@ -40,7 +41,7 @@ double dotProduct(std::vector<double> vecA, std::vector<double> vecB) {
   if (vecA.size() != vecB.size())
     throw std::runtime_error("Error: Wrong Sizes");
 
-  double dot;
+  double dot = 0;
   for (size_t i = 0; i < vecA.size(); i++) {
     dot += vecA[i] * vecB[i];
   }
@@ -142,12 +143,19 @@ double softmax(double x) { return 1; }
 
 std::vector<double> softmaxV(std::vector<double> x) {
   std::vector<double> a(x.size());
+
+  double max_val = x[0];
+  for (double val : x)
+    if (val > max_val)
+      max_val = val;
+
   double esum = 0;
   for (size_t i = 0; i < x.size(); i++) {
+    a[i] = exp(x[i] - max_val);
     esum += exp(x[i]);
   }
   for (size_t i = 0; i < x.size(); i++) {
-    a[i] = exp(x[i]) / esum;
+    a[i] /= esum;
   }
   return a;
 }

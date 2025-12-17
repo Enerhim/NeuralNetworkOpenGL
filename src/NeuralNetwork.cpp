@@ -7,6 +7,7 @@ NeuralNetwork::NeuralNetwork(
     std::vector<std::function<std::vector<double>(std::vector<double>)>>
         activations) {
   m_units = units;
+  m_activations = activations;
   // Initialize weights and biases.
   m_weights.push_back(randomMatrix(m_units[0], inputSize));
   for (size_t i = 0; i < m_units.size(); i++) {
