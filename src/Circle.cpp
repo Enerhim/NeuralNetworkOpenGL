@@ -14,7 +14,7 @@ Circle::Circle(float x1, float y1, float radius, size_t noSides)
 
 std::vector<float> Circle::calculateVertices(float x1, float y1, float radius,
                                              size_t noSides) {
-  double angle = (360.0 / noSides) * (M_PI / 180.0);
+  double angle = (2.0 * M_PI) / noSides;
 
   std::vector<float> vertices;
 
@@ -23,17 +23,9 @@ std::vector<float> Circle::calculateVertices(float x1, float y1, float radius,
   vertices.push_back(y1);
   vertices.push_back(0);
 
-  // First
-  x1 += radius;
-
   for (size_t i = 0; i < noSides; i++) {
-    float x_ = x1 * cos(angle) - y1 * sin(angle);
-    float y_ = x1 * sin(angle) + y1 * cos(angle);
-
-    x1 = x_;
-    y1 = y_;
-    vertices.push_back(x1);
-    vertices.push_back(y1);
+    vertices.push_back(x1 + radius * cos(i * angle));
+    vertices.push_back(y1 + radius * sin(i * angle));
     vertices.push_back(0);
   }
   return vertices;
