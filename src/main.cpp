@@ -4,6 +4,7 @@
 #include "Renderer.hpp"
 #include "Line.hpp"
 #include "Circle.hpp"
+#include "NeuralNetwork.hpp"
 
 int main() {
 
@@ -12,7 +13,10 @@ int main() {
   Renderer renderer(0, 0, 1600, 900);
 
   Line line(-0.5f, 0.3f, 0.5f, 0.0f, 0.01f);
-  Circle circle(0.0f, 0.0f, 0.2f, 200);
+  Circle circle(0.7f, 0.0f, 0.6f, 200);
+
+  NeuralNetwork network(16, {16, 16, 10}, {"relu", "relu", "softmax"});
+  network.inference({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16});
 
   while (!window.shouldClose()) {
     window.processInput();
@@ -25,7 +29,6 @@ int main() {
     float aspect = (height > 0) ? (float)width / height : 1.0f;
     shader.setFloat("u_aspect", aspect);
 
-    // The correspoding VBO and EBO are automatically bound when VAO is bound.
     renderer.drawElements(line.getVAO(), 6);
     renderer.drawElements(circle.getVAO(), circle.getIndices().size());
     window.swapBuffers();

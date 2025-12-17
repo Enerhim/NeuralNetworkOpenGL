@@ -4,14 +4,14 @@
 
 class Circle : public Polygon {
 public:
-  Circle(float x1, float y1, float radius, unsigned int noSides);
+  Circle(float x1, float y1, float radius, size_t noSides);
 
 private:
   std::vector<float> C;
-  unsigned int m_noSides;
+  size_t m_noSides;
   float radius;
 
   std::vector<float> calculateVertices(float x1, float y1, float radius,
-                                       unsigned int noSides);
-  std::vector<unsigned int> calculateIndices(unsigned int noSides);
+                                       size_t noSides);
+  std::vector<unsigned int> calculateIndices(size_t noSides);
 };
