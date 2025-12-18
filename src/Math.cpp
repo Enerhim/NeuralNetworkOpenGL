@@ -2,6 +2,7 @@
 #include <random>
 #include <stdexcept>
 #include <cmath>
+#include <vector>
 
 // Random
 
@@ -186,4 +187,19 @@ std::vector<std::vector<double>> sigmoid(std::vector<std::vector<double>> x) {
     a[i] = sigmoidV(x[i]);
   }
   return a;
+}
+
+// Loss & Cost Function
+double crossEntropyLoss(std::vector<double> a, unsigned int label) {
+  return -log(a[label - 1]);
+}
+
+double costFuction(std::vector<std::vector<double>> examples,
+                   std::vector<unsigned int> labels) {
+  double sum = 0;
+  for (size_t i = 0; i < examples.size(); i++) {
+    sum += crossEntropyLoss(examples[i], labels[i]);
+  }
+
+  return sum / examples.size();
 }

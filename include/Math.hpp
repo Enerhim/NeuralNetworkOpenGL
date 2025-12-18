@@ -33,3 +33,8 @@ std::vector<std::vector<double>> softmax(std::vector<std::vector<double>> x);
 double sigmoid(double x);
 std::vector<double> sigmoidV(std::vector<double> x);
 std::vector<std::vector<double>> sigmoid(std::vector<std::vector<double>> x);
+
+// Loss & Cost Function
+double crossEntropyLoss(std::vector<double> a, unsigned int y);
+double costFuction(std::vector<std::vector<double>> examples,
+                   std::vector<unsigned int> labels);

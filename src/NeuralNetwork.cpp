@@ -19,10 +19,21 @@ NeuralNetwork::NeuralNetwork(
 };
 
 std::vector<double> NeuralNetwork::inference(std::vector<double> inputVector) {
+  m_aVals[0] = inputVector;
+
   std::vector<double> a = inputVector;
+
   for (size_t i = 0; i < m_units.size(); i++) {
-    a = m_activations[i](addVectors(dotProduct(m_weights[i], a), m_biases[i]));
+    std::vector<double> z =
+        addVectors(dotProduct(m_weights[i], a), m_biases[i]);
+    a = m_activations[i](z);
+
+    m_zVals[i] = z;
+    m_aVals[i + 1] = a;
   }
 
   return a;
 }
+
+void NeuralNetwork::fit(std::vector<std::vector<double>> trainingData,
+                        std::vector<double> labels) {}
