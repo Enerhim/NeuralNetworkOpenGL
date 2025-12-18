@@ -1,6 +1,5 @@
 #include "NeuralNetwork.hpp"
-#include <vector>
-#include "Math.hpp"
+#include "Vector.hpp"
 
 NeuralNetwork::NeuralNetwork(
     int inputSize, std::vector<size_t> units,
@@ -36,4 +35,13 @@ std::vector<double> NeuralNetwork::inference(std::vector<double> inputVector) {
 }
 
 void NeuralNetwork::fit(std::vector<std::vector<double>> trainingData,
-                        std::vector<double> labels) {}
+                        std::vector<double> labels) {
+  for (size_t l = m_units.size(); l > 0; l--) {
+    for (size_t i = 0; i < m_weights[l].size(); i++) {
+      for (size_t j = 0; j < m_weights[l][i].size(); j++) {
+        // Todo
+        // Implement Gradient Descent & Backprop
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
 #include "Line.hpp"
 #include "Circle.hpp"
 #include "NeuralNetwork.hpp"
-#include "Math.hpp"
+#include "Activations.hpp"
 
 #include <iostream>
 
