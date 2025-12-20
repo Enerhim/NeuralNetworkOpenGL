@@ -1,9 +1,10 @@
 #include "Activations.hpp"
 #include <cmath>
 
+// Relu
 double relu(double x) { return fmax(0, x); }
 
-std::vector<double> reluV(std::vector<double> x) {
+std::vector<double> reluV(std::vector<double> &x) {
   std::vector<double> a(x.size());
   for (size_t i = 0; i < x.size(); i++) {
     a[i] = relu(x[i]);
@@ -11,7 +12,7 @@ std::vector<double> reluV(std::vector<double> x) {
   return a;
 }
 
-std::vector<std::vector<double>> relu(std::vector<std::vector<double>> x) {
+std::vector<std::vector<double>> relu(std::vector<std::vector<double>> &x) {
   std::vector<std::vector<double>> a(x.size(),
                                      std::vector<double>(x[0].size()));
   for (size_t i = 0; i < x.size(); i++) {
@@ -20,9 +21,11 @@ std::vector<std::vector<double>> relu(std::vector<std::vector<double>> x) {
   return a;
 }
 
+// Linear
+
 double linear(double x) { return x; }
 
-std::vector<double> linearV(std::vector<double> x) {
+std::vector<double> linearV(std::vector<double> &x) {
   std::vector<double> a(x.size());
   for (size_t i = 0; i < x.size(); i++) {
     a[i] = linear(x[i]);
@@ -30,7 +33,7 @@ std::vector<double> linearV(std::vector<double> x) {
   return a;
 }
 
-std::vector<std::vector<double>> linear(std::vector<std::vector<double>> x) {
+std::vector<std::vector<double>> linear(std::vector<std::vector<double>> &x) {
   std::vector<std::vector<double>> a(x.size(),
                                      std::vector<double>(x[0].size()));
   for (size_t i = 0; i < x.size(); i++) {
@@ -39,9 +42,9 @@ std::vector<std::vector<double>> linear(std::vector<std::vector<double>> x) {
   return a;
 }
 
-double softmax(double x) { return 1; }
+// Softmax
 
-std::vector<double> softmaxV(std::vector<double> x) {
+std::vector<double> softmaxV(std::vector<double> &x) {
   std::vector<double> a(x.size());
 
   double max_val = x[0];
@@ -52,7 +55,7 @@ std::vector<double> softmaxV(std::vector<double> x) {
   double esum = 0;
   for (size_t i = 0; i < x.size(); i++) {
     a[i] = exp(x[i] - max_val);
-    esum += exp(x[i]);
+    esum += a[i];
   }
   for (size_t i = 0; i < x.size(); i++) {
     a[i] /= esum;
@@ -60,7 +63,7 @@ std::vector<double> softmaxV(std::vector<double> x) {
   return a;
 }
 
-std::vector<std::vector<double>> softmax(std::vector<std::vector<double>> x) {
+std::vector<std::vector<double>> softmax(std::vector<std::vector<double>> &x) {
   std::vector<std::vector<double>> a(x.size(),
                                      std::vector<double>(x[0].size()));
   for (size_t i = 0; i < x.size(); i++) {
@@ -69,9 +72,11 @@ std::vector<std::vector<double>> softmax(std::vector<std::vector<double>> x) {
   return a;
 }
 
+// Sigmoid
+
 double sigmoid(double x) { return 1.0 / (1.0 + exp(-x)); }
 
-std::vector<double> sigmoidV(std::vector<double> x) {
+std::vector<double> sigmoidV(std::vector<double> &x) {
   std::vector<double> a(x.size());
   for (size_t i = 0; i < x.size(); i++) {
     a[i] = sigmoid(x[i]);
@@ -79,7 +84,7 @@ std::vector<double> sigmoidV(std::vector<double> x) {
   return a;
 }
 
-std::vector<std::vector<double>> sigmoid(std::vector<std::vector<double>> x) {
+std::vector<std::vector<double>> sigmoid(std::vector<std::vector<double>> &x) {
   std::vector<std::vector<double>> a(x.size(),
                                      std::vector<double>(x[0].size()));
   for (size_t i = 0; i < x.size(); i++) {

@@ -7,6 +7,10 @@ NeuralNetwork::NeuralNetwork(
         activations) {
   m_units = units;
   m_activations = activations;
+
+  m_aVals.resize(m_units.size() + 1);
+  m_zVals.resize(m_units.size());
+
   // Initialize weights and biases.
   m_weights.push_back(randomMatrix(m_units[0], inputSize));
   for (size_t i = 0; i < m_units.size(); i++) {
@@ -23,8 +27,8 @@ std::vector<double> NeuralNetwork::inference(std::vector<double> inputVector) {
   std::vector<double> a = inputVector;
 
   for (size_t i = 0; i < m_units.size(); i++) {
-    std::vector<double> z =
-        addVectors(dotProduct(m_weights[i], a), m_biases[i]);
+    std::vector<double> z = {};
+    addVectors(dotProduct(m_weights[i], a), m_biases[i], z);
     a = m_activations[i](z);
 
     m_zVals[i] = z;

@@ -1,4 +1,5 @@
 #include "Loss.hpp"
+#include <cmath>
 
 // Loss & Cost Function
 double crossEntropyLoss(std::vector<double> a, unsigned int label) {

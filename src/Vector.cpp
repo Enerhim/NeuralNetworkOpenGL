@@ -3,8 +3,8 @@
 #include <random>
 
 std::vector<std::vector<double>> randomMatrix(size_t rows, size_t cols) {
-  std::random_device rd;
-  std::mt19937 gen(rd());
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
   // look up xavier/glorot random initialization
   std::uniform_real_distribution<double> dist(-1.0 / sqrt(cols),
                                               1.0 / sqrt(cols));
@@ -20,8 +20,8 @@ std::vector<std::vector<double>> randomMatrix(size_t rows, size_t cols) {
 }
 
 std::vector<double> randomVector(size_t size) {
-  std::random_device rd;
-  std::mt19937 gen(rd());
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
   std::uniform_real_distribution<double> dist(-0.001, 0.001);
 
   std::vector<double> vec(size);
@@ -34,7 +34,7 @@ std::vector<double> randomVector(size_t size) {
 
 // Matrix Vector Op
 
-double dotProduct(std::vector<double> vecA, std::vector<double> vecB) {
+double dotProduct(std::vector<double> &vecA, std::vector<double> &vecB) {
   if (vecA.size() != vecB.size())
     throw std::runtime_error("Error: Wrong Sizes");
 
@@ -46,8 +46,8 @@ double dotProduct(std::vector<double> vecA, std::vector<double> vecB) {
   return dot;
 }
 
-std::vector<double> dotProduct(std::vector<std::vector<double>> matA,
-                               std::vector<double> vecB) {
+std::vector<double> dotProduct(std::vector<std::vector<double>> &matA,
+                               std::vector<double> &vecB) {
   if (matA.empty() || matA[0].size() != vecB.size())
     throw std::runtime_error("Error: Wrong Sizes");
 
@@ -63,8 +63,8 @@ std::vector<double> dotProduct(std::vector<std::vector<double>> matA,
 }
 
 std::vector<std::vector<double>>
-dotProduct(std::vector<std::vector<double>> matA,
-           std::vector<std::vector<double>> matB) {
+dotProduct(std::vector<std::vector<double>> &matA,
+           std::vector<std::vector<double>> &matB) {
 
   if (matA.empty() || matA[0].size() != matB.size())
     throw std::runtime_error("Error: Wrong sizes");
@@ -84,11 +84,11 @@ dotProduct(std::vector<std::vector<double>> matA,
   return dot;
 }
 
-std::vector<double> addVectors(std::vector<double> vecA,
-                               std::vector<double> vecB) {
+std::vector<double> addVectors(std::vector<double> &vecA,
+                               std::vector<double> &vecB,
+                               std::vector<double> &vecC) {
   if (vecA.size() != vecB.size())
     throw std::runtime_error("Error: Wrong sizes");
-  std::vector<double> vecC(vecA.size());
   for (size_t i = 0; i < vecA.size(); i++) {
     vecC[i] = vecA[i] + vecB[i];
   }
@@ -96,11 +96,11 @@ std::vector<double> addVectors(std::vector<double> vecA,
   return vecC;
 }
 
-std::vector<double> subtractVectors(std::vector<double> vecA,
-                                    std::vector<double> vecB) {
+std::vector<double> subtractVectors(std::vector<double> &vecA,
+                                    std::vector<double> &vecB,
+                                    std::vector<double> &vecC) {
   if (vecA.size() != vecB.size())
     throw std::runtime_error("Error: Wrong sizes");
-  std::vector<double> vecC(vecA.size());
   for (size_t i = 0; i < vecA.size(); i++) {
     vecC[i] = vecA[i] - vecB[i];
   }
