@@ -63,6 +63,10 @@ Shader::~Shader() {
 
 void Shader::use() const { glUseProgram(shaderProgram); }
 
-void Shader::setFloat(const char *name, float value) const {
+void Shader::setFloat1f(const char *name, float value) const {
   glUniform1f(glGetUniformLocation(shaderProgram, name), value);
+}
+
+void Shader::setFloat4f(const char *name, float x, float y, float z, float w) {
+  glUniform4f(glGetUniformLocation(shaderProgram, name), x, y, z, w);
 }

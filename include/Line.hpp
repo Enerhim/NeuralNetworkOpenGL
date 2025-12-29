@@ -5,7 +5,8 @@
 
 class Line : public Polygon {
 public:
-  Line(float x1, float y1, float x2, float y2, float width);
+  Line(float x1, float y1, float x2, float y2, float width,
+       std::vector<float> color);
 
 private:
   std::vector<float> m_A, m_B;

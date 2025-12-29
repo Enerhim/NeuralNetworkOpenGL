@@ -16,6 +16,7 @@ public:
   void getSizeByRef(int &width, int &height) const {
     glfwGetWindowSize(m_window, &width, &height);
   }
+  float getTime() const { return glfwGetTime(); }
 
 private:
   GLFWwindow *m_window = nullptr;

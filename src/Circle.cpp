@@ -6,8 +6,8 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-Circle::Circle(float x1, float y1, float radius, size_t noSides)
-    : Polygon(calculateVertices(x1, y1, radius, noSides),
+Circle::Circle(float x1, float y1, float radius, size_t noSides, std::vector<float> color)
+    : Polygon(calculateVertices(x1, y1, radius, noSides), color,
               calculateIndices(noSides), GL_STATIC_DRAW) {
   m_noSides = noSides;
 }

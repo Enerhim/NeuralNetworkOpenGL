@@ -34,7 +34,8 @@ std::vector<double> randomVector(size_t size) {
 
 // Matrix Vector Op
 
-double dotProduct(std::vector<double> &vecA, std::vector<double> &vecB) {
+double dotProduct(const std::vector<double> &vecA,
+                  const std::vector<double> &vecB) {
   if (vecA.size() != vecB.size())
     throw std::runtime_error("Error: Wrong Sizes");
 
@@ -46,8 +47,8 @@ double dotProduct(std::vector<double> &vecA, std::vector<double> &vecB) {
   return dot;
 }
 
-std::vector<double> dotProduct(std::vector<std::vector<double>> &matA,
-                               std::vector<double> &vecB) {
+std::vector<double> dotProduct(const std::vector<std::vector<double>> &matA,
+                               const std::vector<double> &vecB) {
   if (matA.empty() || matA[0].size() != vecB.size())
     throw std::runtime_error("Error: Wrong Sizes");
 
@@ -63,8 +64,8 @@ std::vector<double> dotProduct(std::vector<std::vector<double>> &matA,
 }
 
 std::vector<std::vector<double>>
-dotProduct(std::vector<std::vector<double>> &matA,
-           std::vector<std::vector<double>> &matB) {
+dotProduct(const std::vector<std::vector<double>> &matA,
+           const std::vector<std::vector<double>> &matB) {
 
   if (matA.empty() || matA[0].size() != matB.size())
     throw std::runtime_error("Error: Wrong sizes");
@@ -84,11 +85,13 @@ dotProduct(std::vector<std::vector<double>> &matA,
   return dot;
 }
 
-std::vector<double> addVectors(std::vector<double> &vecA,
-                               std::vector<double> &vecB,
+std::vector<double> addVectors(const std::vector<double> &vecA,
+                               const std::vector<double> &vecB,
                                std::vector<double> &vecC) {
   if (vecA.size() != vecB.size())
     throw std::runtime_error("Error: Wrong sizes");
+  if (vecC.size() != vecA.size())
+    vecC.resize(vecA.size());
   for (size_t i = 0; i < vecA.size(); i++) {
     vecC[i] = vecA[i] + vecB[i];
   }
@@ -96,11 +99,13 @@ std::vector<double> addVectors(std::vector<double> &vecA,
   return vecC;
 }
 
-std::vector<double> subtractVectors(std::vector<double> &vecA,
-                                    std::vector<double> &vecB,
+std::vector<double> subtractVectors(const std::vector<double> &vecA,
+                                    const std::vector<double> &vecB,
                                     std::vector<double> &vecC) {
   if (vecA.size() != vecB.size())
     throw std::runtime_error("Error: Wrong sizes");
+  if (vecC.size() != vecA.size())
+    vecC.resize(vecA.size());
   for (size_t i = 0; i < vecA.size(); i++) {
     vecC[i] = vecA[i] - vecB[i];
   }

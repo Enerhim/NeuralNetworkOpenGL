@@ -4,7 +4,8 @@
 
 class Circle : public Polygon {
 public:
-  Circle(float x1, float y1, float radius, size_t noSides);
+  Circle(float x1, float y1, float radius, size_t noSides,
+         std::vector<float> color);
 
 private:
   std::vector<float> C;
