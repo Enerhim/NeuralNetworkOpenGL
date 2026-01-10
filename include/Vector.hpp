@@ -1,9 +1,6 @@
 #pragma once
 #include <vector>
 
-std::vector<std::vector<double>> randomMatrix(size_t rows, size_t cols);
-std::vector<double> randomVector(size_t size);
-
 double dotProduct(const std::vector<double> &vecA,
                   const std::vector<double> &vecB);
 std::vector<double> dotProduct(const std::vector<std::vector<double>> &matA,

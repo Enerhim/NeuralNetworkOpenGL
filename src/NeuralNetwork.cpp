@@ -1,5 +1,6 @@
 #include "NeuralNetwork.hpp"
 #include "Vector.hpp"
+#include "Random.hpp"
 
 NeuralNetwork::NeuralNetwork(
     int inputSize, std::vector<size_t> units,
@@ -11,7 +12,6 @@ NeuralNetwork::NeuralNetwork(
   m_aVals.resize(m_units.size() + 1);
   m_zVals.resize(m_units.size());
 
-  // Initialize weights and biases.
   m_weights.push_back(randomMatrix(m_units[0], inputSize));
   for (size_t i = 0; i < m_units.size(); i++) {
     m_biases.push_back(randomVector(m_units[i]));
@@ -41,8 +41,6 @@ void NeuralNetwork::fit(std::vector<std::vector<double>> trainingData,
   for (size_t l = m_units.size(); l > 0; l--) {
     for (size_t i = 0; i < m_weights[l].size(); i++) {
       for (size_t j = 0; j < m_weights[l][i].size(); j++) {
-        // Todo
-        // Implement Gradient Descent & Backprop
       }
     }
   }

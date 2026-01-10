@@ -1,5 +1,4 @@
 #include "Polygon.hpp"
-#include <iostream>
 
 Polygon::Polygon(std::vector<float> vertices, std::vector<float> color,
                  std::vector<unsigned int> indices, GLenum drawMode) {
